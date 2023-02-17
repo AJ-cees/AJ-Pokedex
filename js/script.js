@@ -5,5 +5,11 @@ let movieList = [
     {title: 'Train to Busan', year: '2016', type: ['zombie', 'South Korean']},
     {title: 'The Call', year: '2020', type: ['time-travel', 'South Korean']},
     {title: 'As the Gods Will', year: '2014', type:['supernatural','Japanese']}
-
 ];
+
+//Prints movieList array on the page
+
+function movieLoop(movie) {
+  console.log (movie.title + ' is a ' + movie.type [0] + ' type of movie ');
+}
+movieList.forEach(movieLoop);
