@@ -29,9 +29,10 @@ console.log(movieRepository.getAll());
 movieRepository.add({name: 'The Blob'});
 console.log(movieRepository.getAll());
 
-function movieLoop(movie) {
-  console.log (movie.title + ' is a ' + movie.type [0] + ' type of movie ');
-  document.write (movie.title + ' is a ' + movie.type [0] + ' type of movie ');
-}
 
-movieRepository.forEach(getAll);
+
+getAll.forEach(function movie {
+  console.log(movie.title + ' is a ' + movie.type[0] + ' type of movie ');
+  document.write(movie.title + ' is a ' + movie.type[0] + ' type of movie ');
+})
+};
