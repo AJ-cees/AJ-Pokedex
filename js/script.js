@@ -10,11 +10,26 @@ let movieRepository = (function() {
 ];
 
 function add(movie) {
-  movieList.push (movie);
+  movieList.push(movie);
 }
 
 function getAll() {
   return movieList;
+}
+
+function addItemList (herb) {
+  let movieList= document.querySelector(".movie");
+  let listMovie= document.createElement("li");
+  let button= document.createElement("button");
+  button.innerText= movie.name 
+  button.classList.add("button-class");
+
+  //dd event listener to button
+  button.addEventListener("click", function(event) {
+      showDetails(movie);
+  });
+  listMovie.appendChild(button);
+  movieList.appendChild(listMovie);
 }
 
 return {
@@ -31,8 +46,7 @@ console.log(movieRepository.getAll());
 
 
 
-getAll.forEach(function movie {
+movieRepository.getAll().forEach(function(movie) {
   console.log(movie.title + ' is a ' + movie.type[0] + ' type of movie ');
   document.write(movie.title + ' is a ' + movie.type[0] + ' type of movie ');
-})
-};
+});
