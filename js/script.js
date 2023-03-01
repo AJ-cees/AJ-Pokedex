@@ -1,35 +1,35 @@
-// Wraps movieList in IIFE
-let movieRepository = (function() {
-  let movieList = [
-    {title:'Scream', year: '1996',  type: ['slasher','American']},
-    {title:'Friday the 13th', year: '1980', type: ['slasher', 'American']},
-    {title: 'Nightmare on Elm Street', year: '1984', type: ['slasher', 'American']},
-    {title: 'Train to Busan', year: '2016', type: ['zombie', 'South Korean']},
-    {title: 'The Call', year: '2020', type: ['time-travel', 'South Korean']},
-    {title: 'As the Gods Will', year: '2014', type:['supernatural','Japanese']}
+// Wraps pokemonList in IIFE
+let pokemonRepository = (function() {
+  let pokemonList = [
+    {name:'Bulbasaur', height: '0.7',  type: ['grass','poison']},
+    {name:'Delcatty', height: '1.1', type: ['normal']},
+    {name: 'Eevee', height: '0.3', type: ['normal']},
+    {name: 'Pikachu', height: '0.4', type: ['electric']},
+    {name: 'Charizard', height: '1.7', type: ['fire','flying']},
+    {name: 'Squirtle', height: '0.5', type:['water']}
 ];
 
-function add(movie) {
-  movieList.push(movie);
+function add(pokemon) {
+  pokemonList.push(pokemon);
 }
 
 function getAll() {
-  return movieList;
+  return pokemonList;
 }
 
 function addItemList (herb) {
-  let movieList= document.querySelector(".movie");
-  let listMovie= document.createElement("li");
+  let pokemonList= document.querySelector(".pokemon");
+  let listPokemon= document.createElement("li");
   let button= document.createElement("button");
-  button.innerText= movie.name 
+  button.innerText= pokemon.name 
   button.classList.add("button-class");
 
-  //dd event listener to button
+  //add event listener to button
   button.addEventListener("click", function(event) {
-      showDetails(movie);
+      showDetails(pokemon);
   });
-  listMovie.appendChild(button);
-  movieList.appendChild(listMovie);
+  listPokemon.appendChild(button);
+  pokemonList.appendChild(listPokemon);
 }
 
 return {
@@ -39,14 +39,13 @@ return {
 
 })();
 
-//Prints movie array
-console.log(movieRepository.getAll());
-movieRepository.add({name: 'The Blob'});
-console.log(movieRepository.getAll());
+//Prints pokemon array
+console.log(pokemonRepository.getAll());
+pokemonRepository.add({name: 'Jigglypuff'});
+console.log(pokemonRepository.getAll());
+let pokeList= document.querySelector("pokemon-list")
 
-
-
-movieRepository.getAll().forEach(function(movie) {
-  console.log(movie.title + ' is a ' + movie.type[0] + ' type of movie ');
-  document.write(movie.title + ' is a ' + movie.type[0] + ' type of movie ');
+pokemonRepository.getAll().forEach(function(pokemon) {
+  console.log(pokemon.name + ' is a ' + pokemon.type[0] + ' type ' + '<br>');
+  document.write(pokemon.name + ' is a ' + pokemon.type[0] + ' type ' + '<br>');
 });
