@@ -10,42 +10,54 @@ let pokemonRepository = (function() {
 ];
 
 function add(pokemon) {
-  pokemonList.push(pokemon);
+  if (
+    typeof pokemon === "object" &&
+    "name" in pokemon &&
+    "height" in pokemon &&
+    "types" in pokemon
+  ) {
+    repository.push(pokemon);
+  } else {
+    console.log("pokemon is not correct");
+  }
 }
-
 function getAll() {
-  return pokemonList;
+  return repository;
 }
 
-function addItemList (herb) {
-  let pokemonList= document.querySelector(".pokemon");
-  let listPokemon= document.createElement("li");
-  let button= document.createElement("button");
-  button.innerText= pokemon.name 
-  button.classList.add("button-class");
-
-  //add event listener to button
-  button.addEventListener("click", function(event) {
-      showDetails(pokemon);
-  });
+function addListItem (pokemon) {
+  let pokemonList= document.querySelector('pokemon-list');
+  let listPokemon= document.createElement('li');
+  let button= document.createElement('button');
+  button.innerText= pokemon.name;
+  button.classList.add('button-class');
   listPokemon.appendChild(button);
   pokemonList.appendChild(listPokemon);
+
+  //add event listener to button
+  button.addEventListener('click', function(event) {
+      showDetails(pokemon);
+  });
+ 
 }
 
 return {
   add: add,
-  getAll: getAll
+  getAll: getAll,
+  addListItem: addListItem
 };
 
 })();
 
 //Prints pokemon array
 console.log(pokemonRepository.getAll());
-pokemonRepository.add({name: 'Jigglypuff'});
+pokemonRepository.add({name: 'Jigglypuff', height: '0.5', type: ['normal', 'fairy']
+});
 console.log(pokemonRepository.getAll());
 let pokeList= document.querySelector("pokemon-list")
 
 pokemonRepository.getAll().forEach(function(pokemon) {
+  pokemonRepository.addListItem(pokemon);
   console.log(pokemon.name + ' is a ' + pokemon.type[0] + ' type ' + '<br>');
-  document.write(pokemon.name + ' is a ' + pokemon.type[0] + ' type ' + '<br>');
+
 });
