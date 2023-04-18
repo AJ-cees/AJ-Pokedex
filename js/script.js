@@ -1,29 +1,9 @@
 // Wraps pokemonList in IIFE
 let pokemonRepository = (function() {
-  let pokemonList = [
-    {name:'Bulbasaur', height: '0.7',  type: ['grass','poison']},
-    {name:'Delcatty', height: '1.1', type: ['normal']},
-    {name: 'Eevee', height: '0.3', type: ['normal']},
-    {name: 'Pikachu', height: '0.4', type: ['electric']},
-    {name: 'Charizard', height: '1.7', type: ['fire','flying']},
-    {name: 'Squirtle', height: '0.5', type:['water']}
-];
+  let pokemonList = [];
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  let searchInput = document.querySelector("#search-input");
 
-function add(pokemon) {
-  if (
-    typeof pokemon === "object" &&
-    "name" in pokemon &&
-    "height" in pokemon &&
-    "types" in pokemon
-  ) {
-    repository.push(pokemon);
-  } else {
-    console.log("pokemon is not correct");
-  }
-}
-function getAll() {
-  return repository;
-}
 
 function addListItem (pokemon) {
   let pokemonList= document.querySelector('pokemon-list');
@@ -61,3 +41,33 @@ pokemonRepository.getAll().forEach(function(pokemon) {
   console.log(pokemon.name + ' is a ' + pokemon.type[0] + ' type ' + '<br>');
 
 });
+
+function loadList() {
+  return fetch(apiUrl).then(function (response) {
+    return response.json();
+  }).then(function (json){
+    json.results.forEach(function (item){
+      let pokemon = {
+        name: item.name,
+        detailsUrl: item.url
+      };
+      add(pokemon);
+    });
+  }).catch(function (e) {
+    console.error(e);
+
+  })
+}
+
+
+{
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url).then(function (response){
+      return response.json();
+    }).then(function (details) {
+
+      item.imageUrl = de
+    }
+  }
+}
